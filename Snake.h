@@ -20,7 +20,7 @@ private:
 	sf::RectangleShape block;
 
 	bool dead = false;
-							
+
 	//Colors
 	sf::Color bodyColor = sf::Color::Blue; //sf::Color::Color(0, 0, 0);
 	sf::Color outlineColor = bodyColor;//sf::Color::Color(0, 0, 0);
@@ -51,4 +51,3 @@ public:
 	void render(sf::RenderWindow* window);
 
 };
-

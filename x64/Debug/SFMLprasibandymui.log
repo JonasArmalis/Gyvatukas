@@ -1,0 +1,16 @@
+﻿  Game.cpp
+C:\Users\jonas\OneDrive\Stalinis kompiuteris\SFML\SFMLprasibandymui\Game.cpp(30,58): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\jonas\OneDrive\Stalinis kompiuteris\SFML\SFMLprasibandymui\Game.cpp(30,37): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\jonas\OneDrive\Stalinis kompiuteris\SFML\SFMLprasibandymui\Game.cpp(67,84): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\jonas\OneDrive\Stalinis kompiuteris\SFML\SFMLprasibandymui\Game.cpp(67,50): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\jonas\OneDrive\Stalinis kompiuteris\SFML\SFMLprasibandymui\Game.cpp(129,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\jonas\OneDrive\Stalinis kompiuteris\SFML\SFMLprasibandymui\Game.cpp(129,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  SFMLprasibandymui.vcxproj -> C:\Users\jonas\OneDrive\Stalinis kompiuteris\SFML\SFMLprasibandymui\x64\Debug\SFMLprasibandymui.exe

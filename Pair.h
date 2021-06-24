@@ -1,13 +1,10 @@
 #pragma once
 
-class Pair {
-private:
-	
-
-public:
-	Pair();
-	Pair(int n1, int n2);
+struct Pair
+{
 	int x;
 	int y;
+	Pair();
+	Pair(int n1, int n2);
 
 };

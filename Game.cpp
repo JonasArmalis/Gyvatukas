@@ -3,70 +3,71 @@
 //Private functions
 void Game::initVariables()
 {
-	window = nullptr;
+	this->window = nullptr;
 
 	//Game logic
-	foodOffset = 5;
-	foodEaten = true;
+	this->foodOffset = 5;
+	this->foodEaten = true;
 
 }
 
 void Game::initWindow()
 {
-	videoMode.height = windowHeight;
-	videoMode.width = windowWidth;
-	window = new sf::RenderWindow(videoMode, "Snake game", sf::Style::Titlebar | sf::Style::Close);
-	window->setFramerateLimit(7);
+	this->videoMode.height = windowHeight;
+	this->videoMode.width = windowWidth;
+	this->window = new sf::RenderWindow(this->videoMode, "Snake game", sf::Style::Titlebar | sf::Style::Close);
+	this->window->setFramerateLimit(10);
 }
 
 
 void Game::initFood()
 {
-	food.setFillColor(foodFillColor);
-	food.setSize(sf::Vector2f(blockSideLength - 2 * foodOffset, blockSideLength - 2 * foodOffset));
+	this->food.setFillColor(foodFillColor);
+	this->food.setSize(sf::Vector2f(blockSideLength - 2 * foodOffset, blockSideLength - 2 * foodOffset));
 }
 
 
 //Contructors / Destructors
 Game::Game()
 {
-	initVariables();
-	initWindow();
-	initFood();
+	this->initVariables();
+	this->initWindow();
+	this->initFood();
 }
 
 Game::~Game()
 {
-	delete window;
+	delete this->window;
 }
 
 //Accessors
 const bool Game::running() const
 {
-	return window->isOpen();
+	return this->window->isOpen();
 }
 
 //Functions
 void Game::generateFoodPos()
 {
 	bool isValid = false;
+	Pair temp;
+	temp.x = rand() % WIDTH;
+	temp.y = rand() % HEIGHT;
 
-	//Generates random coordinates.
-	foodPos.x = rand() % WIDTH;
-	foodPos.y = rand() % HEIGHT;
-
-	//Checks weather the generated position is in snake.
 	while (!isValid)
 	{
 		isValid = true;
 		for (int i = 0; i < Snaky.length; i++)
 		{
-			if (CompareCoords(Snaky.Position[0].x, Snaky.Position[0].y, foodPos.x, foodPos.y))
+			if (CompareCoords(Snaky.Position[0].x, Snaky.Position[0].y, temp.x, temp.y))
 			{
 				isValid = false;
 			}
 		}
 	}
+
+	this->foodPos.x = temp.x;
+	this->foodPos.y = temp.y;
 
 }
 
@@ -78,24 +79,24 @@ void Game::spawnFood()
 		-Initializes radius to half block side length
 		-sets colors
 	*/
-	foodEaten = false;
-	generateFoodPos();
-	food.setPosition((foodPos.x * blockSideLength) + foodOffset, (foodPos.y * blockSideLength) + foodOffset);
-	
+	this->foodEaten = false;
+	this->generateFoodPos();
+	this->food.setPosition((foodPos.x * blockSideLength) + foodOffset, (foodPos.y * blockSideLength) + foodOffset);
+
 }
 
 void Game::pollEvents()
 {
-	while (window->pollEvent(ev))
+	while (this->window->pollEvent(this->ev))
 	{
-		switch (ev.type)
+		switch (this->ev.type)
 		{
 		case sf::Event::Closed:
-			window->close();
+			this->window->close();
 			break;
 		case sf::Event::KeyPressed:
-			if (ev.key.code == sf::Keyboard::Escape)
-				window->close();
+			if (this->ev.key.code == sf::Keyboard::Escape)
+				this->window->close();
 			else handleKeyInput();
 		}
 	}
@@ -149,7 +150,7 @@ bool Game::SnakeInBounds()
 
 void Game::die()
 {
-	window->close();
+	this->window->close();
 }
 
 void Game::updateSnake()
@@ -161,54 +162,53 @@ void Game::updateSnake()
 		Snaky.eat(foodPos);
 		foodEaten = true;
 	}
-	
-	if (!SnakeInBounds() )
+
+	if (!SnakeInBounds())
 	{
-		die();
+		this->die();
 	}
-		
+
 }
 
 void Game::update()
 {
 	//Event polling
-	pollEvents();
-	if(foodEaten)
-		spawnFood();
-	updateSnake();
+	this->pollEvents();
+	if (this->foodEaten)
+		this->spawnFood();
+	this->updateSnake();
 
-	//terminalOutput();
-	
+	//this->terminalOutput();
+
 }
 
 void Game::renderFood()
 {
-	window->draw(food);
+	this->window->draw(food);
 }
 
 void Game::render()
 {
 	/*
 		@return void
-
 		Renders game objects
 		- Clear old frame
 		- Render objects
 		- display frame
 	*/
 
-	window->clear(sf::Color::Black);
+	this->window->clear(sf::Color::Black);
 
 	//Draw game objects
-	renderFood();
+	this->renderFood();
 	Snaky.render(window);
 
-	window->display();
+	this->window->display();
 }
 
 //void Game::terminalOutput()
 //{
 //	system("CLS");
-//	std::cout << "Taskai: " cout << "Taskai: " << length - 4<< std::endl;
+//	std::cout << "Taskai: " cout << "Taskai: " << this->length - 4<< std::endl;
 //	
 //}

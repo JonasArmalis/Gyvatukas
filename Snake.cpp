@@ -48,9 +48,9 @@ void Snake::initSnake()
 }
 
 void Snake::move()
-{	
+{
 	Body[int(length - 1)].setPosition(head.getPosition());
-	
+
 	this->Position[int(length - 1)].x = this->headPos.x;
 	this->Position[int(length - 1)].y = this->headPos.y;
 

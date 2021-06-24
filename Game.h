@@ -27,7 +27,7 @@ private:
 	sf::RenderWindow* window;
 	sf::VideoMode videoMode;
 	sf::Event ev;
-	
+
 
 	//Game logic
 	static const int windowHeight = 900;
@@ -50,14 +50,14 @@ private:
 	sf::Color gridColor = sf::Color::Color(22, 41, 166);//backgroundColor;  
 	sf::Color foodFillColor = sf::Color::Color(176, 6, 39);
 	sf::Color foodOutlineColor = foodFillColor; // sf::Color::Color(0, 255, 0);
-	
+
 	//sf::Color deadColor = sf::Color::Color(100, 100, 100);
 
 
 	//sf::RectangleShape blocks[WIDTH][HEIGHT];
 	sf::RectangleShape food;
 	//std::vector<intPair> snake;
-	
+
 	Pair foodPos;
 
 	//Private functions
@@ -74,7 +74,7 @@ public:
 	const bool running() const;
 
 	//Functions
-	
+
 	bool CompareCoords(int x1, int y1, int x2, int y2);
 	bool SnakeInBounds();
 	void generateFoodPos();
@@ -91,4 +91,3 @@ public:
 
 	void terminalOutput();
 };
-

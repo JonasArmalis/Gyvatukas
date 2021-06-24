@@ -1,0 +1,21 @@
+﻿  Food.cpp
+  Game.cpp
+C:\Users\jonas\OneDrive\Stalinis kompiuteris\SFML\SFMLprasibandymui\Game.cpp(26,84): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\jonas\OneDrive\Stalinis kompiuteris\SFML\SFMLprasibandymui\Game.cpp(26,50): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Users\jonas\OneDrive\Stalinis kompiuteris\SFML\SFMLprasibandymui\Game.cpp(84,99): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Users\jonas\OneDrive\Stalinis kompiuteris\SFML\SFMLprasibandymui\Game.cpp(84,55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  main.cpp
+  Generating code
+  55 of 153 functions (35.9%) were compiled, the rest were copied from previous compilation.
+    43 functions were new in current compilation
+    5 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  SFMLprasibandymui.vcxproj -> C:\Users\jonas\OneDrive\Stalinis kompiuteris\SFML\SFMLprasibandymui\x64\Release\SFMLprasibandymui.exe
