@@ -6,7 +6,7 @@ void Game::initVariables()
 	this->window = nullptr;
 
 	//Game logic
-	this->foodOffset = 5;
+	this->foodOffset = 8;
 	this->foodEaten = true;
 
 }
@@ -16,7 +16,7 @@ void Game::initWindow()
 	this->videoMode.height = windowHeight;
 	this->videoMode.width = windowWidth;
 	this->window = new sf::RenderWindow(this->videoMode, "Snake game", sf::Style::Titlebar | sf::Style::Close);
-	this->window->setFramerateLimit(10);
+	this->window->setFramerateLimit(12);
 }
 
 
@@ -50,39 +50,28 @@ const bool Game::running() const
 void Game::generateFoodPos()
 {
 	bool isValid = false;
-	Pair temp;
-	temp.x = rand() % WIDTH;
-	temp.y = rand() % HEIGHT;
 
 	while (!isValid)
 	{
+		foodPos.x = rand() % WIDTH;
+		foodPos.y = rand() % HEIGHT;
+
 		isValid = true;
 		for (int i = 0; i < Snaky.length; i++)
 		{
-			if (CompareCoords(Snaky.Position[0].x, Snaky.Position[0].y, temp.x, temp.y))
+			if (CompareCoords(Snaky.Position[i].x, Snaky.Position[i].y, foodPos.x, foodPos.y))
 			{
 				isValid = false;
 			}
 		}
 	}
-
-	this->foodPos.x = temp.x;
-	this->foodPos.y = temp.y;
-
 }
 
 void Game::spawnFood()
 {
-	/*
-		Spawns food:
-		-sets a random possition on grid coords
-		-Initializes radius to half block side length
-		-sets colors
-	*/
-	this->foodEaten = false;
 	this->generateFoodPos();
-	this->food.setPosition((foodPos.x * blockSideLength) + foodOffset, (foodPos.y * blockSideLength) + foodOffset);
-
+	this->food.setPosition(foodPos.x * blockSideLength + foodOffset, foodPos.y * blockSideLength + foodOffset);
+	this->foodEaten = false;
 }
 
 void Game::pollEvents()
@@ -101,7 +90,6 @@ void Game::pollEvents()
 		}
 	}
 }
-
 void Game::handleKeyInput()
 {
 	if (ev.key.code == sf::Keyboard::Up)
@@ -142,12 +130,10 @@ bool Game::CompareCoords(int x1, int y1, int x2, int y2)
 {
 	return x1 == x2 && y1 == y2;
 }
-
 bool Game::SnakeInBounds()
 {
 	return Snaky.headPos.x <= WIDTH && Snaky.headPos.x >= 0 && Snaky.headPos.y <= HEIGHT && Snaky.headPos.y >= 0;
 }
-
 void Game::die()
 {
 	this->window->close();
@@ -169,7 +155,6 @@ void Game::updateSnake()
 	}
 
 }
-
 void Game::update()
 {
 	//Event polling
@@ -181,12 +166,10 @@ void Game::update()
 	//this->terminalOutput();
 
 }
-
 void Game::renderFood()
 {
 	this->window->draw(food);
 }
-
 void Game::render()
 {
 	/*

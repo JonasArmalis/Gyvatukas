@@ -13,16 +13,20 @@ Snake::~Snake()
 
 void Snake::initVariables()
 {
-	this->thickness = 30;
-	this->length = 3;
-	this->headPos.x = 15;
-	this->headPos.y = 10;
-	this->head.setFillColor(headColor);
-	this->head.setSize(sf::Vector2f(thickness, thickness));
+	thickness = 30;
+	length = 3;
+	headPos.x = 15;
+	headPos.y = 10;
+	head.setFillColor(headColor);
+	head.setSize(sf::Vector2f(thickness, thickness));
 
-	this->block.setFillColor(bodyColor);
-	this->block.setOutlineColor(outlineColor);
-	this->block.setSize(sf::Vector2f(thickness, thickness));
+	block.setFillColor(bodyColor);
+	block.setOutlineColor(outlineColor);
+	block.setOutlineThickness(1);
+	head.setOutlineThickness(1);
+	head.setOutlineColor(outlineColor);
+
+	block.setSize(sf::Vector2f(thickness, thickness));
 }
 
 void Snake::initSnake()
@@ -42,8 +46,8 @@ void Snake::initSnake()
 
 
 	//setting direction to right
-	this->direction.x = 1;
-	this->direction.y = 0;
+	direction.x = 1;
+	direction.y = 0;
 
 }
 
@@ -51,26 +55,28 @@ void Snake::move()
 {
 	Body[int(length - 1)].setPosition(head.getPosition());
 
-	this->Position[int(length - 1)].x = this->headPos.x;
-	this->Position[int(length - 1)].y = this->headPos.y;
+	Position[int(length - 1)].x = headPos.x;
+	Position[int(length - 1)].y = headPos.y;
 
-	this->headPos.x += direction.x;
-	this->headPos.y += direction.y;
+	headPos.x += direction.x;
+	headPos.y += direction.y;
 
 	head.setPosition(sf::Vector2f(headPos.x * thickness, headPos.y * thickness));
 
 	for (int i = 0; i < length; i++)
 	{
-		this->Position[i].x = this->Position[int(i + 1)].x;
-		this->Position[i].y = this->Position[int(i + 1)].y;
+		Position[i].x = Position[int(i + 1)].x;
+		Position[i].y = Position[int(i + 1)].y;
 		Body[i].setPosition(sf::Vector2f(Position[i].x * thickness, Position[i].y * thickness));
 	}
 }
 
 void Snake::eat(Pair foodPos)
 {
-	this->Position.push_back(foodPos);
-	this->length++;
+	block.setPosition(sf::Vector2f(foodPos.x, foodPos.y));
+	Body.push_back(block);
+	length++;
+	Position.push_back(foodPos);
 }
 
 void Snake::render(sf::RenderWindow* window)
