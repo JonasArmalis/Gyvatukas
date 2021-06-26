@@ -38,10 +38,10 @@ public:
 	virtual ~Snake();
 
 	//Variables
-	std::vector<Pair> Position;				//The positions of the snake's blocks
-	Pair direction;							//Directions expressed as x and y coordinates we add each iteration.
-	Pair headPos;							//Position of snake's head (in coordinates)
-	int length;								//The legth of the snake (in blocks).
+	std::vector<Pair> Position;		//The positions of the snake's blocks
+	Pair direction;				//Directions expressed as x and y coordinates we add each iteration.
+	Pair headPos;				//Position of snake's head (in coordinates)
+	int length;				//The legth of the snake (in blocks).
 	float thickness;			//The legth of the blocks, which snake is made of. (in pixels)
 
 
